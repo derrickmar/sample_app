@@ -10,8 +10,14 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="container">
-      <%= yield %>
+      <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      <%= yield %> <!-- specifies where the content of the view should
+      be inserted-->
       <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+      <!-- <%= User.count %> -->
     </div>
   </body>
 </html>
